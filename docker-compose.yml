@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  mysql_service:
+    image: "mysql:${MYSQL_VERSION}"
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: "${DATABASE_NAME}"
+      MYSQL_USER: "${WORDPRESS_DB_USER}"
+      MYSQL_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - .\mysql_vol:/var/lib/mysql
+    networks:
+      - wp_network
+
+  wordpress_service:
+    image: "wordpress:${WORDPRESS_VERSION}"
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: mysql_service
+      WORDPRESS_DB_NAME: "${DATABASE_NAME}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    volumes:
+      - .\wp_vol:/var/www/html
+    networks:
+      - wp_network
+    depends_on:
+      - mysql_service
+
+networks:
+  wp_network:
+    driver: bridge
+
+volumes:
+  wp_vol:
+  mysql_vol:
