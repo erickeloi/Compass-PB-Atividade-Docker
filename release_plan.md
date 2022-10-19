@@ -6,8 +6,8 @@
     - [x] Escrever o Docker-Compose
     - [x] Organizar as variáveis de ambiente no .env
 2. [Documentação](readme.md)
-    - [ ] Wordpress e MySQL com Docker-Compose
-    - [ ] Instalação do Docker
-    - [ ] Como mudar o login e senha do banco de dados (.env)
-    - [ ] Como executar a Aplicação
-    - [ ] Sumário
+    - [x] Wordpress e MySQL com Docker-Compose
+    - [x] Instalação do Docker
+    - [x] Como mudar o login e senha do banco de dados (.env)
+    - [x] Como executar a Aplicação
+    - [x] Sumário
